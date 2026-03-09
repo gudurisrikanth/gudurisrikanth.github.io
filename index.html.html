@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Srikanth Guduri — Cybersecurity Professional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --bg:       #03080f;
+  --bg2:      #050d1a;
+  --surface:  rgba(8,18,36,0.6);
+  --glass:    rgba(10,22,50,0.45);
+  --b0:       rgba(50,100,200,0.08);
+  --b1:       rgba(50,100,200,0.14);
+  --b2:       rgba(50,100,200,0.32);
+  --blue:     #3d6ff5;
+  --blue-l:   #6b9fff;
+  --blue-xl:  #a8c8ff;
+  --sky:      #38bdf8;
+  --gold:     #c9a86e;
+  --green:    #34d399;
+  --t1: #eef4ff;
+  --t2: #7a9cc8;
+  --t3: #2a4668;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'Manrope', system-ui, sans-serif;
+  --ease:  cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--bg);
+  color: var(--t2);
+  font-family: var(--sans);
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: rgba(61,111,245,.25); color: var(--blue-xl); }
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-thumb { background: var(--blue); }
+
+/* CURSOR */
+#cur { position:fixed; z-index:99999; pointer-events:none; width:8px; height:8px; background:var(--t1); border-radius:50%; transform:translate(-50%,-50%); mix-blend-mode:exclusion; transition:width .2s,height .2s,background .2s; }
+#cur-o { position:fixed; z-index:99998; pointer-events:none; width:38px; height:38px; border:1px solid rgba(107,159,255,.28); border-radius:50%; transform:translate(-50%,-50%); }
+body.hov #cur { width:20px; height:20px; background:var(--sky); }
+body.hov #cur-o { width:56px; height:56px; border-color:rgba(56,189,248,.28); }
+
+/* CANVAS */
+#bg { position:fixed; inset:0; z-index:0; pointer-events:none; }
+.grain { position:fixed; inset:-80px; z-index:1; pointer-events:none; opacity:.03;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: ga 2s steps(3) infinite; }
+@keyframes ga { 0%{transform:translate(0,0)} 40%{transform:translate(-1%,1%)} 80%{transform:translate(1%,-1%)} }
+
+#pbar { position:fixed; top:0; left:0; right:0; height:2px; z-index:9999; background:linear-gradient(90deg,var(--blue),var(--sky)); transform-origin:left; transform:scaleX(0); }
+
+/* ── HEADER ── */
+header {
+  position:fixed; top:0; left:0; right:0; z-index:500;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 72px; height:68px;
+  transition:background .5s, border-color .5s;
+}
+header.on { background:rgba(3,8,15,.88); backdrop-filter:blur(24px); border-bottom:1px solid var(--b1); }
+
+.logo { font-family:var(--serif); font-size:22px; font-weight:400; color:var(--t1); letter-spacing:.05em; text-decoration:none; }
+.logo em { font-style:italic; color:var(--blue-l); }
+
+nav { display:flex; gap:4px; }
+nav a { font-size:12px; font-weight:400; color:var(--t3); text-decoration:none; letter-spacing:.08em; padding:7px 16px; border-radius:100px; transition:color .25s, background .25s; }
+nav a:hover, nav a.on { color:var(--blue-l); background:rgba(61,111,245,.08); }
+
+/* ══ HERO ══ */
+.hero {
+  position:relative; z-index:2; min-height:100vh;
+  display:grid; grid-template-columns:1fr 420px;
+  align-items:center; gap:60px;
+  padding:100px 72px 80px;
+  overflow:hidden;
+}
+.hero::after {
+  content:''; position:absolute;
+  top:15%; bottom:15%; right:420px;
+  width:1px;
+  background:linear-gradient(180deg,transparent,var(--b1) 30%,var(--b2) 55%,var(--b1) 80%,transparent);
+  pointer-events:none;
+}
+
+.hero-sup {
+  display:flex; align-items:center; gap:14px;
+  font-size:11px; font-weight:500; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--t3); margin-bottom:30px;
+  opacity:0; animation:up .7s .1s var(--ease) forwards;
+}
+.hero-sup::before { content:''; width:36px; height:1px; background:currentColor; opacity:.4; flex-shrink:0; }
+.live-badge {
+  display:flex; align-items:center; gap:6px;
+  font-size:10px; font-weight:500; letter-spacing:.12em;
+  color:var(--green); background:rgba(52,211,153,.07);
+  border:1px solid rgba(52,211,153,.2); border-radius:100px; padding:4px 12px;
+}
+.live-badge::before { content:''; width:6px; height:6px; background:var(--green); border-radius:50%; box-shadow:0 0 8px var(--green); animation:gp 2s ease infinite; }
+@keyframes gp { 0%,100%{transform:scale(1)} 50%{transform:scale(1.5)} }
+
+.hero-name {
+  font-family:var(--serif);
+  font-size:clamp(68px,10vw,152px);
+  font-weight:300; color:var(--t1);
+  line-height:.87; letter-spacing:-.025em;
+  margin-bottom:30px;
+  opacity:0; animation:up .9s .2s var(--ease) forwards;
+}
+.hero-name em { font-style:italic; color:var(--blue-l); display:block; }
+
+.hero-role {
+  font-size:clamp(14px,1.5vw,17px); font-weight:300;
+  color:var(--t2); letter-spacing:.06em; line-height:1.6;
+  margin-bottom:14px;
+  opacity:0; animation:up .7s .38s var(--ease) forwards;
+  display:flex; align-items:center; gap:14px;
+}
+.hero-role::before { content:''; width:28px; height:1px; background:var(--blue); opacity:.4; flex-shrink:0; }
+
+.hero-desc {
+  font-size:16px; font-weight:300; line-height:1.88;
+  color:var(--t2); max-width:500px; margin-bottom:52px;
+  opacity:0; animation:up .7s .52s var(--ease) forwards;
+}
+
+.hero-btns {
+  display:flex; gap:14px; flex-wrap:wrap;
+  opacity:0; animation:up .7s .65s var(--ease) forwards;
+}
+
+/* Buttons */
+.btn-p {
+  display:inline-flex; align-items:center; gap:10px;
+  font-size:13px; font-weight:500; letter-spacing:.05em;
+  color:#fff; text-decoration:none; cursor:none;
+  padding:14px 34px; border-radius:100px;
+  background:linear-gradient(135deg, var(--blue) 0%, #1a44c4 100%);
+  box-shadow:0 4px 22px rgba(61,111,245,.38), inset 0 1px 0 rgba(255,255,255,.12);
+  position:relative; overflow:hidden;
+  transition:transform .3s var(--ease), box-shadow .3s;
+}
+.btn-p::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(255,255,255,.14),transparent); }
+.btn-p:hover { transform:translateY(-3px); box-shadow:0 10px 36px rgba(61,111,245,.5), inset 0 1px 0 rgba(255,255,255,.18); }
+.btn-s {
+  display:inline-flex; align-items:center; gap:10px;
+  font-size:13px; font-weight:400; letter-spacing:.05em;
+  color:var(--t2); text-decoration:none; cursor:none;
+  padding:13px 34px; border-radius:100px; border:1px solid var(--b1);
+  transition:all .3s var(--ease);
+}
+.btn-s:hover { color:var(--blue-l); border-color:var(--b2); background:rgba(61,111,245,.06); transform:translateY(-3px); }
+
+/* HERO RIGHT */
+.hero-right {
+  display:flex; flex-direction:column; gap:14px;
+  opacity:0; animation:fr .9s .5s var(--ease) forwards;
+}
+@keyframes up { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fr { from{opacity:0;transform:translateX(26px)} to{opacity:1;transform:translateX(0)} }
+
+/* Identity card */
+.id-card {
+  background:var(--glass); backdrop-filter:blur(24px);
+  border:1px solid var(--b1); border-radius:24px; padding:32px;
+  transition:border-color .35s, transform .35s var(--ease);
+}
+.id-card:hover { border-color:var(--b2); transform:translateY(-3px); }
+
+.id-avatar {
+  width:68px; height:68px; border-radius:18px;
+  background:linear-gradient(135deg,#1a3880,var(--blue));
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--serif); font-size:26px; font-weight:500; color:var(--t1);
+  margin-bottom:18px; letter-spacing:.04em;
+  box-shadow:0 8px 24px rgba(61,111,245,.28);
+}
+.id-name { font-family:var(--serif); font-size:22px; font-weight:500; color:var(--t1); letter-spacing:.03em; margin-bottom:4px; }
+.id-sub  { font-size:12px; font-weight:400; color:var(--t3); letter-spacing:.08em; margin-bottom:20px; }
+
+.id-areas { display:flex; flex-direction:column; gap:8px; }
+.id-area {
+  display:flex; align-items:center; gap:12px;
+  font-size:12px; font-weight:400; color:var(--t2);
+  padding:9px 0; border-bottom:1px solid var(--b0);
+}
+.id-area:last-child { border-bottom:none; padding-bottom:0; }
+.id-area-dot { width:6px; height:6px; border-radius:2px; flex-shrink:0; background:var(--blue-l); }
+
+/* Metric cards */
+.metrics { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.metric {
+  background:var(--glass); backdrop-filter:blur(20px);
+  border:1px solid var(--b1); border-radius:18px; padding:22px 20px;
+  transition:border-color .35s, transform .35s var(--ease);
+}
+.metric:hover { border-color:var(--b2); transform:translateY(-3px); }
+.metric-val { font-family:var(--serif); font-size:38px; font-weight:400; color:var(--t1); letter-spacing:-.02em; line-height:1; margin-bottom:5px; }
+.metric-val em { font-style:normal; color:var(--blue-l); }
+.metric-lbl { font-size:10px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--t3); }
+
+/* Status card */
+.status-card {
+  background:var(--glass); backdrop-filter:blur(20px);
+  border:1px solid var(--b1); border-radius:18px; padding:18px 22px;
+  display:flex; align-items:center; justify-content:space-between;
+  transition:border-color .3s;
+}
+.status-card:hover { border-color:var(--b2); }
+.status-left { display:flex; align-items:center; gap:12px; }
+.status-dot { width:9px; height:9px; background:var(--green); border-radius:50%; box-shadow:0 0 10px var(--green); animation:gp 2s ease infinite; }
+.status-info strong { display:block; font-size:13px; font-weight:500; color:var(--t1); margin-bottom:2px; }
+.status-info span { font-size:11px; color:var(--t3); }
+.status-tag { font-size:9px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--green); background:rgba(52,211,153,.07); border:1px solid rgba(52,211,153,.18); border-radius:100px; padding:4px 11px; }
+
+/* Scroll hint */
+.scroll-hint { position:absolute; bottom:34px; left:50%; transform:translateX(-50%); z-index:10; display:flex; flex-direction:column; align-items:center; gap:10px; opacity:0; animation:up .6s 1.5s var(--ease) forwards; }
+.scroll-hint span { font-size:9px; font-weight:500; letter-spacing:.28em; text-transform:uppercase; color:var(--t3); }
+.s-mouse { width:22px; height:34px; border:1px solid var(--b2); border-radius:100px; display:flex; justify-content:center; padding-top:6px; }
+.s-wheel { width:3px; height:7px; background:var(--blue-l); border-radius:2px; animation:sw 2s ease infinite; }
+@keyframes sw { 0%{transform:translateY(0);opacity:1} 100%{transform:translateY(10px);opacity:0} }
+
+/* ══ STRIP / MARQUEE ══ */
+.strip {
+  position:relative; z-index:2;
+  border-top:1px solid var(--b1); border-bottom:1px solid var(--b1);
+  background:rgba(5,10,22,.5); overflow:hidden; padding:20px 0;
+}
+.strip-track { display:inline-flex; white-space:nowrap; animation:mq 28s linear infinite; }
+.strip-track:hover { animation-play-state:paused; }
+.strip-item { display:inline-flex; align-items:center; gap:28px; padding:0 52px; font-size:12px; font-weight:500; letter-spacing:.15em; text-transform:uppercase; color:var(--t3); }
+.strip-item strong { color:var(--blue-l); font-weight:600; }
+.strip-sep { width:4px; height:4px; background:var(--blue); border-radius:50%; opacity:.4; }
+@keyframes mq { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ══ SECTION ══ */
+.sec { position:relative; z-index:2; padding:108px 72px; }
+.sec-alt { background:rgba(4,10,24,.55); }
+
+.sec-over { font-size:10px; font-weight:600; letter-spacing:.28em; text-transform:uppercase; color:var(--blue); display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.sec-over::before { content:''; width:22px; height:1px; background:var(--blue); opacity:.5; flex-shrink:0; }
+
+.sec-title { font-family:var(--serif); font-size:clamp(40px,5.5vw,72px); font-weight:300; color:var(--t1); line-height:.93; letter-spacing:-.02em; margin-bottom:72px; }
+.sec-title em { font-style:italic; color:var(--blue-l); }
+
+/* Fade reveal */
+.fx { opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease), transform .9s var(--ease); }
+.fx.in { opacity:1; transform:translateY(0); }
+
+/* ══ EXPERTISE CARDS ══ */
+.exp-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.exp-card {
+  background:var(--glass); backdrop-filter:blur(24px);
+  border:1px solid var(--b1); border-radius:22px; padding:36px 32px;
+  position:relative; overflow:hidden;
+  transition:border-color .4s var(--ease), transform .4s var(--ease), box-shadow .4s;
+}
+.exp-card:hover {
+  border-color:var(--b2); transform:translateY(-6px);
+  box-shadow:0 24px 60px rgba(0,0,0,.45);
+}
+.exp-card::after {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,transparent,var(--blue),var(--sky),var(--blue),transparent);
+  background-size:200%; opacity:0;
+  transition:opacity .4s;
+  animation:shimmer 3s linear infinite paused;
+}
+.exp-card:hover::after { opacity:1; animation-play-state:running; }
+@keyframes shimmer { 0%{background-position:200%} 100%{background-position:-200%} }
+
+.exp-card.span2 { grid-column:span 2; }
+.exp-card.span3 { grid-column:span 3; }
+
+.exp-icon { font-size:30px; margin-bottom:20px; display:block; }
+.exp-area { font-size:10px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--blue); margin-bottom:10px; }
+.exp-title { font-family:var(--serif); font-size:24px; font-weight:400; color:var(--t1); line-height:1.15; margin-bottom:14px; letter-spacing:.01em; }
+.exp-body { font-size:13px; font-weight:300; line-height:1.85; color:var(--t2); margin-bottom:22px; }
+.exp-tags { display:flex; flex-wrap:wrap; gap:8px; }
+.exp-tag {
+  font-size:11px; font-weight:400; letter-spacing:.04em;
+  color:var(--t3); border:1px solid var(--b1); border-radius:100px; padding:5px 14px;
+  transition:all .25s;
+}
+.exp-tag:hover { color:var(--blue-l); border-color:var(--b2); }
+
+/* Wide expertise card inner layout */
+.exp-wide-inner { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+
+/* Big number */
+.exp-bignum { font-family:var(--serif); font-size:80px; font-weight:300; color:var(--t1); letter-spacing:-.03em; line-height:1; margin-bottom:10px; }
+.exp-bignum em { font-style:normal; color:var(--blue-l); }
+.exp-bignote { font-size:14px; font-weight:300; line-height:1.7; color:var(--t2); max-width:200px; }
+
+/* ══ PROJECTS ══ */
+.proj-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.proj-card {
+  background:var(--glass); backdrop-filter:blur(24px);
+  border:1px solid var(--b1); border-radius:22px; padding:32px;
+  display:flex; flex-direction:column;
+  position:relative; overflow:hidden;
+  transition:border-color .4s var(--ease), transform .4s var(--ease), box-shadow .4s;
+  cursor:none;
+}
+.proj-card:hover {
+  border-color:var(--b2); transform:translateY(-7px);
+  box-shadow:0 28px 70px rgba(0,0,0,.5);
+}
+.proj-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,transparent,var(--blue),var(--sky),var(--blue),transparent);
+  background-size:200%; opacity:0; transition:opacity .4s;
+  animation:shimmer 3s linear infinite paused;
+}
+.proj-card:hover::before { opacity:1; animation-play-state:running; }
+
+.proj-card.feat { grid-column:span 2; flex-direction:row; gap:32px; align-items:flex-start; }
+.proj-main { flex:1; }
+.proj-aside { width:190px; flex-shrink:0; }
+
+.proj-num { font-size:10px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--t3); margin-bottom:10px; }
+
+.proj-cat {
+  display:inline-block; font-size:9px; font-weight:600; letter-spacing:.18em; text-transform:uppercase;
+  padding:4px 13px; border-radius:100px; margin-bottom:16px;
+}
+.cat-for { color:var(--sky);  background:rgba(56,189,248,.07); border:1px solid rgba(56,189,248,.2); }
+.cat-pen { color:#fb923c;     background:rgba(251,146,60,.07); border:1px solid rgba(251,146,60,.2); }
+.cat-net { color:var(--blue-l); background:rgba(107,159,255,.07); border:1px solid rgba(107,159,255,.2); }
+.cat-ai  { color:#c084fc;     background:rgba(192,132,252,.07); border:1px solid rgba(192,132,252,.2); }
+.cat-cry { color:var(--gold); background:rgba(201,168,110,.07); border:1px solid rgba(201,168,110,.2); }
+.cat-sys { color:var(--green);background:rgba(52,211,153,.07);  border:1px solid rgba(52,211,153,.2); }
+
+.proj-title { font-family:var(--serif); font-size:19px; font-weight:400; color:var(--t1); line-height:1.25; margin-bottom:8px; letter-spacing:.01em; }
+.proj-card.feat .proj-title { font-size:24px; }
+.proj-org { font-size:11px; font-weight:400; color:var(--t3); letter-spacing:.06em; margin-bottom:14px; }
+.proj-desc { font-size:13px; font-weight:300; line-height:1.8; color:var(--t2); margin-bottom:22px; flex:1; }
+.proj-tools { display:flex; flex-wrap:wrap; gap:7px; margin-top:auto; }
+.proj-tool {
+  font-size:10px; font-weight:400; letter-spacing:.04em;
+  color:var(--t3); border:1px solid var(--b1); border-radius:100px; padding:4px 12px;
+  transition:all .25s;
+}
+.proj-card:hover .proj-tool { color:var(--blue-xl); border-color:var(--b2); }
+
+.proj-arrow {
+  position:absolute; top:26px; right:26px; width:34px; height:34px; border-radius:10px;
+  background:rgba(61,111,245,.08); border:1px solid var(--b1);
+  display:flex; align-items:center; justify-content:center; color:var(--t3); font-size:16px;
+  transition:all .3s var(--ease);
+}
+.proj-card:hover .proj-arrow { background:var(--blue); border-color:var(--blue); color:#fff; transform:rotate(45deg); box-shadow:0 4px 16px rgba(61,111,245,.4); }
+
+.proj-highlights { display:flex; flex-direction:column; gap:9px; }
+.proj-hl {
+  display:flex; align-items:flex-start; gap:10px;
+  font-size:11px; font-weight:300; color:var(--t2); line-height:1.5;
+  padding:11px 14px; background:rgba(61,111,245,.04);
+  border:1px solid var(--b1); border-radius:10px;
+}
+.hl-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; margin-top:3px; }
+.hl-b { background:var(--sky); box-shadow:0 0 6px var(--sky); }
+.hl-o { background:#fb923c; }
+
+/* ══ EDUCATION ══ */
+.edu-grid { display:grid; grid-template-columns:2fr 1fr; gap:12px; align-items:start; }
+
+.edu-main {
+  background:var(--glass); backdrop-filter:blur(24px);
+  border:1px solid var(--b1); border-radius:22px; padding:42px;
+  position:relative; overflow:hidden;
+  transition:border-color .4s, transform .4s var(--ease);
+}
+.edu-main:hover { border-color:var(--b2); transform:translateY(-4px); }
+.edu-main::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,var(--blue),var(--sky));
+  transform:scaleX(0); transform-origin:left; transition:transform .5s var(--ease);
+}
+.edu-main:hover::before { transform:scaleX(1); }
+
+.edu-yr { font-size:11px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--t3); margin-bottom:8px; }
+.edu-deg { font-size:11px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--blue-l); margin-bottom:14px; }
+.edu-school { font-family:var(--serif); font-size:34px; font-weight:400; color:var(--t1); margin-bottom:6px; line-height:1.05; letter-spacing:.01em; }
+.edu-loc { font-size:12px; font-weight:400; color:var(--t3); letter-spacing:.06em; margin-bottom:26px; }
+.edu-subjects { display:flex; flex-wrap:wrap; gap:8px; }
+.edu-sub {
+  font-size:11px; font-weight:400; letter-spacing:.04em; color:var(--t3);
+  border:1px solid var(--b1); border-radius:100px; padding:5px 14px;
+  transition:all .25s;
+}
+.edu-sub:hover { color:var(--blue-l); border-color:var(--b2); }
+
+.edu-stack { display:flex; flex-direction:column; gap:10px; }
+.edu-mini {
+  background:var(--glass); backdrop-filter:blur(20px);
+  border:1px solid var(--b1); border-radius:16px; padding:22px 24px;
+  display:flex; align-items:center; gap:16px;
+  transition:border-color .35s, transform .35s var(--ease);
+}
+.edu-mini:hover { border-color:var(--b2); transform:translateX(5px); }
+.edu-mini-ico { width:44px; height:44px; border-radius:12px; flex-shrink:0; background:rgba(61,111,245,.08); border:1px solid var(--b1); display:flex; align-items:center; justify-content:center; font-size:22px; }
+.edu-mini-deg { font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--blue-l); margin-bottom:3px; }
+.edu-mini-school { font-family:var(--serif); font-size:16px; font-weight:400; color:var(--t1); margin-bottom:2px; }
+.edu-mini-meta { font-size:10px; font-weight:400; color:var(--t3); }
+
+/* ══ CERTIFICATIONS ══ */
+.cert-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+.cert-card {
+  background:var(--glass); backdrop-filter:blur(24px);
+  border:1px solid var(--b1); border-radius:22px; padding:32px;
+  display:flex; gap:24px; align-items:center;
+  position:relative; overflow:hidden;
+  transition:border-color .4s, transform .4s var(--ease);
+}
+.cert-card:hover { border-color:var(--b2); transform:translateY(-4px); }
+.cert-card::before {
+  content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background:linear-gradient(180deg,var(--blue),var(--sky));
+  transform:scaleY(0); transform-origin:bottom; transition:transform .4s var(--ease);
+}
+.cert-card:hover::before { transform:scaleY(1); }
+
+.cert-icon { width:68px; height:68px; border-radius:18px; flex-shrink:0; font-size:30px; display:flex; align-items:center; justify-content:center; background:rgba(61,111,245,.07); border:1px solid var(--b1); }
+.cert-name { font-family:var(--serif); font-size:20px; font-weight:400; color:var(--t1); margin-bottom:5px; letter-spacing:.01em; }
+.cert-iss  { font-size:10px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--blue-l); margin-bottom:4px; }
+.cert-date { font-size:11px; font-weight:400; color:var(--t3); }
+.cert-tick { display:inline-flex; align-items:center; gap:5px; margin-top:10px; font-size:9px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--green); background:rgba(52,211,153,.07); border:1px solid rgba(52,211,153,.2); border-radius:100px; padding:3px 10px; width:fit-content; }
+
+/* ══ CONTACT ══ */
+.contact-wrap { display:grid; grid-template-columns:1.1fr 1fr; gap:64px; align-items:start; }
+
+.contact-h { font-family:var(--serif); font-size:clamp(44px,5.5vw,72px); font-weight:300; color:var(--t1); line-height:.93; letter-spacing:-.02em; margin-bottom:20px; }
+.contact-h em { font-style:italic; color:var(--blue-l); }
+.contact-p { font-size:15px; font-weight:300; line-height:1.88; color:var(--t2); max-width:380px; margin-bottom:36px; }
+
+.c-links { display:flex; flex-direction:column; gap:8px; }
+.cl {
+  display:flex; align-items:center; gap:18px;
+  padding:18px 24px; background:var(--glass); backdrop-filter:blur(20px);
+  border:1px solid var(--b1); border-radius:16px; text-decoration:none; color:var(--t2);
+  position:relative; overflow:hidden; transition:all .35s var(--ease);
+}
+.cl::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:linear-gradient(180deg,var(--blue),var(--sky)); transform:scaleY(0); transform-origin:bottom; transition:transform .35s var(--ease); }
+.cl:hover { border-color:var(--b2); color:var(--t1); transform:translateX(6px); box-shadow:0 4px 20px rgba(0,0,0,.3); }
+.cl:hover::before { transform:scaleY(1); }
+.cl-ico  { font-size:19px; width:38px; text-align:center; flex-shrink:0; }
+.cl-lbl  { font-size:9px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--t3); margin-bottom:2px; }
+.cl-val  { font-size:13px; font-weight:400; }
+.cl-arr  { margin-left:auto; opacity:0; transform:translateX(-5px); transition:all .3s; }
+.cl:hover .cl-arr { opacity:1; transform:translateX(0); }
+
+/* ══ FOOTER ══ */
+footer {
+  position:relative; z-index:2; padding:28px 72px;
+  border-top:1px solid var(--b1);
+  display:flex; justify-content:space-between; align-items:center;
+}
+.ft { font-size:11px; font-weight:400; color:var(--t3); letter-spacing:.06em; }
+.ft-links { display:flex; gap:22px; }
+.ft-links a { font-size:11px; font-weight:400; color:var(--t3); text-decoration:none; transition:color .25s; }
+.ft-links a:hover { color:var(--blue-l); }
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1100px){
+  .hero { grid-template-columns:1fr; gap:48px; }
+  .hero::after { display:none; }
+  .hero-right { display:grid; grid-template-columns:1fr 1fr; }
+  .id-card { grid-column:span 2; }
+  .exp-grid { grid-template-columns:1fr 1fr; }
+  .exp-card.span2,.exp-card.span3 { grid-column:span 2; }
+  .proj-grid { grid-template-columns:1fr 1fr; }
+  .proj-card.feat { grid-column:span 2; flex-direction:column; }
+  .proj-aside { width:100%; }
+  .edu-grid { grid-template-columns:1fr; }
+  .cert-grid { grid-template-columns:1fr; }
+  .contact-wrap { grid-template-columns:1fr; gap:48px; }
+  .hero { padding:96px 40px 80px; }
+  .sec { padding:80px 40px; }
+  header,footer { padding-left:40px; padding-right:40px; }
+  .strip { padding-left:0; padding-right:0; }
+}
+@media(max-width:720px){
+  .exp-grid,.proj-grid,.cert-grid { grid-template-columns:1fr; }
+  .exp-card.span2,.exp-card.span3 { grid-column:auto; }
+  .proj-card.feat { grid-column:auto; flex-direction:column; }
+  .hero-right { grid-template-columns:1fr; }
+  .id-card { grid-column:auto; }
+  nav { display:none; }
+  .hero { padding:80px 20px; }
+  .sec { padding:60px 20px; }
+  header,footer { padding-left:20px; padding-right:20px; }
+  footer { flex-direction:column; gap:14px; text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-o"></div>
+<canvas id="bg"></canvas>
+<div class="grain"></div>
+<div id="pbar"></div>
+
+<!-- HEADER -->
+<header id="hdr">
+  <a class="logo" href="#">Srikanth <em>Guduri</em></a>
+  <nav>
+    <a href="#expertise">Expertise</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-sup">
+      Cybersecurity &amp; Networks Professional
+      <div class="live-badge">Available Now</div>
+    </div>
+
+    <h1 class="hero-name">
+      Srikanth<br><em>Guduri</em>
+    </h1>
+
+    <p class="hero-role">
+      Master's Candidate · University of New Haven · 2026
+    </p>
+
+    <p class="hero-desc">
+      Dedicated to building safer digital environments through meticulous forensic investigation, ethical security assessment, and resilient network architecture. I bring both technical depth and a strategic mindset to every security challenge.
+    </p>
+
+    <div class="hero-btns">
+      <a href="#projects" class="btn-p">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        View My Work
+      </a>
+      <a href="#contact" class="btn-s">Get in Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="id-card">
+      <div class="id-avatar">SG</div>
+      <div class="id-name">Srikanth Guduri</div>
+      <div class="id-sub">Cybersecurity &amp; Networks · UNH Tagliatela COE</div>
+      <div class="id-areas">
+        <div class="id-area"><div class="id-area-dot"></div>Digital Forensics &amp; Investigation</div>
+        <div class="id-area"><div class="id-area-dot"></div>Ethical Hacking &amp; Penetration Testing</div>
+        <div class="id-area"><div class="id-area-dot"></div>Enterprise Network Security</div>
+        <div class="id-area"><div class="id-area-dot"></div>AI &amp; Machine Learning Systems</div>
+        <div class="id-area"><div class="id-area-dot"></div>Cryptography &amp; Cloud Security</div>
+      </div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-val">6<em>+</em></div>
+        <div class="metric-lbl">Security Projects</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">3<em>×</em></div>
+        <div class="metric-lbl">Magnitude Gain</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">&lt;<em>100ms</em></div>
+        <div class="metric-lbl">AI Inference</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">2</div>
+        <div class="metric-lbl">Certifications</div>
+      </div>
+    </div>
+
+    <div class="status-card">
+      <div class="status-left">
+        <div class="status-dot"></div>
+        <div class="status-info">
+          <strong>Available Immediately</strong>
+          <span>New Haven, CT · Remote &amp; On-site</span>
+        </div>
+      </div>
+      <div class="status-tag">Open to Work</div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="s-mouse"><div class="s-wheel"></div></div>
+    <span>Scroll to explore</span>
+  </div>
+</section>
+
+<!-- MARQUEE STRIP -->
+<div class="strip">
+  <div class="strip-track">
+    <span class="strip-item"><strong>Digital Forensics</strong><span class="strip-sep"></span></span>
+    <span class="strip-item"><strong>Ethical Hacking</strong><span class="strip-sep"></span></span>
+    <span class="strip-item"><strong>Network Architecture</strong><span class="strip-sep"></span></span>
+    <span class="strip-item"><strong>AI Security</strong><span class="strip-sep"></span></span>
+    <span class="strip-item"><strong>Cryptography</strong><span class="strip-sep"></span></span>
+    <span class="strip-item"><strong>Incident Response</strong><span class="strip-sep"></span></span>
+    <span class="strip-item"><strong>Cloud Security</strong><span class="strip-sep"></span></span>
+    <span class="strip-item"><strong>Penetration Testing</strong><span class="strip-sep"></span></span>
+    <!-- duplicate -->
+    <span class="strip-item"><strong>Digital Forensics</strong><span class="strip-sep"></span></span>
+    <span class="strip-item"><strong>Ethical Hacking</strong><span class="strip-sep"></span></span>
+    <span class="strip-item"><strong>Network Architecture</strong><span class="strip-sep"></span></span>
+    <span class="strip-item"><strong>AI Security</strong><span class="strip-sep"></span></span>
+    <span class="strip-item"><strong>Cryptography</strong><span class="strip-sep"></span></span>
+    <span class="strip-item"><strong>Incident Response</strong><span class="strip-sep"></span></span>
+    <span class="strip-item"><strong>Cloud Security</strong><span class="strip-sep"></span></span>
+    <span class="strip-item"><strong>Penetration Testing</strong><span class="strip-sep"></span></span>
+  </div>
+</div>
+
+<!-- ══ EXPERTISE ══ -->
+<section class="sec sec-alt" id="expertise">
+  <div class="sec-over fx">Expertise</div>
+  <h2 class="sec-title fx">What I <em>bring</em><br>to every role</h2>
+
+  <div class="exp-grid">
+
+    <div class="exp-card span2 fx">
+      <div class="exp-wide-inner">
+        <div>
+          <span class="exp-icon">🔍</span>
+          <div class="exp-area">Core Specialisation</div>
+          <div class="exp-title">Digital Forensics &amp; Investigation</div>
+          <div class="exp-body">Recovery and systematic analysis of digital evidence from seized devices — smartphones, tablets, laptops, and external media. Expert use of forensic toolkits to reconstruct deleted data, communications, location history, and device activity timelines.</div>
+          <div class="exp-tags">
+            <span class="exp-tag">Evidence Recovery</span>
+            <span class="exp-tag">Autopsy</span>
+            <span class="exp-tag">ALEAPP / iLEAPP</span>
+            <span class="exp-tag">Steganography Analysis</span>
+            <span class="exp-tag">SQLite Forensics</span>
+            <span class="exp-tag">Timeline Reconstruction</span>
+          </div>
+        </div>
+        <div>
+          <div class="exp-bignum">3<em>×</em></div>
+          <div class="exp-bignote">Orders of magnitude improvement in cryptographic revocation efficiency — MCA research thesis</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-card fx">
+      <span class="exp-icon">🛡️</span>
+      <div class="exp-area">Offensive Security</div>
+      <div class="exp-title">Ethical Hacking</div>
+      <div class="exp-body">End-to-end penetration assessments — payload deployment, remote access, credential extraction, and full incident response with log analysis and remediation.</div>
+      <div class="exp-tags">
+        <span class="exp-tag">Penetration Testing</span>
+        <span class="exp-tag">Metasploit</span>
+        <span class="exp-tag">Kali Linux</span>
+        <span class="exp-tag">Incident Response</span>
+      </div>
+    </div>
+
+    <div class="exp-card fx">
+      <span class="exp-icon">🌐</span>
+      <div class="exp-area">Infrastructure</div>
+      <div class="exp-title">Network Security Engineering</div>
+      <div class="exp-body">Hierarchical enterprise network design with layered defences — firewalls, intrusion detection and prevention systems, DMZ architecture, and disaster recovery planning.</div>
+      <div class="exp-tags">
+        <span class="exp-tag">Cisco Infrastructure</span>
+        <span class="exp-tag">Firewalls</span>
+        <span class="exp-tag">IDS / IPS</span>
+        <span class="exp-tag">DMZ Design</span>
+        <span class="exp-tag">Disaster Recovery</span>
+      </div>
+    </div>
+
+    <div class="exp-card fx">
+      <span class="exp-icon">🤖</span>
+      <div class="exp-area">Emerging Technology</div>
+      <div class="exp-title">AI &amp; Machine Learning</div>
+      <div class="exp-body">Deep learning models for real-world embedded deployment — custom neural networks trained from scratch, transfer learning, and edge AI with sub-100ms inference latency.</div>
+      <div class="exp-tags">
+        <span class="exp-tag">TensorFlow</span>
+        <span class="exp-tag">Computer Vision</span>
+        <span class="exp-tag">NVIDIA Jetson</span>
+        <span class="exp-tag">ROS2</span>
+        <span class="exp-tag">Edge Inference</span>
+      </div>
+    </div>
+
+    <div class="exp-card fx">
+      <span class="exp-icon">🔐</span>
+      <div class="exp-area">Data Protection</div>
+      <div class="exp-title">Cryptography &amp; Cloud Security</div>
+      <div class="exp-body">Novel cryptographic access control frameworks for untrusted cloud environments — layered symmetric encryption, delegation-aware key management, and dynamic revocation protocols.</div>
+      <div class="exp-tags">
+        <span class="exp-tag">Symmetric Encryption</span>
+        <span class="exp-tag">Key Management</span>
+        <span class="exp-tag">Access Control</span>
+        <span class="exp-tag">Cloud Architecture</span>
+      </div>
+    </div>
+
+    <div class="exp-card fx">
+      <span class="exp-icon">💻</span>
+      <div class="exp-area">Development</div>
+      <div class="exp-title">Software &amp; Systems</div>
+      <div class="exp-body">Security-focused software development — from multi-threaded simulation systems and database-backed web applications to cryptographic protocol implementation.</div>
+      <div class="exp-tags">
+        <span class="exp-tag">Python</span>
+        <span class="exp-tag">Java / J2EE</span>
+        <span class="exp-tag">C++</span>
+        <span class="exp-tag">MySQL</span>
+        <span class="exp-tag">Concurrency</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ PROJECTS ══ -->
+<section class="sec" id="projects">
+  <div class="sec-over fx">Selected Work</div>
+  <h2 class="sec-title fx">Projects &amp; <em>Research</em></h2>
+
+  <div class="proj-grid">
+
+    <div class="proj-card feat fx" data-tilt>
+      <div class="proj-main">
+        <div class="proj-num">01 — Featured</div>
+        <span class="proj-cat cat-for">Digital Forensics</span>
+        <div class="proj-title">National Gallery Investigation — Multi-Device Forensic Case</div>
+        <div class="proj-org">University of New Haven · 2024 – Present</div>
+        <div class="proj-desc">Conducted a comprehensive forensic investigation across multiple seized devices in a simulated criminal case. Systematically recovered steganographic audio files, deleted communications, GPS tracking data, and browser history artefacts. Produced a cross-device evidence timeline uncovering two interconnected criminal plots.</div>
+        <div class="proj-tools">
+          <span class="proj-tool">Autopsy</span>
+          <span class="proj-tool">ALEAPP</span>
+          <span class="proj-tool">iLEAPP</span>
+          <span class="proj-tool">SQLite Browser</span>
+          <span class="proj-tool">Steganography Analysis</span>
+          <span class="proj-tool">GPS Forensics</span>
+        </div>
+      </div>
+      <div class="proj-aside">
+        <div class="proj-highlights">
+          <div class="proj-hl"><div class="hl-dot hl-b"></div>Multiple seized devices analysed</div>
+          <div class="proj-hl"><div class="hl-dot hl-b"></div>Hidden audio files recovered</div>
+          <div class="proj-hl"><div class="hl-dot hl-b"></div>GPS &amp; network log correlation</div>
+          <div class="proj-hl"><div class="hl-dot hl-b"></div>Full evidence timeline built</div>
+          <div class="proj-hl"><div class="hl-dot hl-o"></div>Two criminal plots exposed</div>
+        </div>
+      </div>
+      <div class="proj-arrow">↗</div>
+    </div>
+
+    <div class="proj-card fx" data-tilt>
+      <div class="proj-num">02</div>
+      <span class="proj-cat cat-pen">Penetration Testing</span>
+      <div class="proj-title">Wargame Lab — Windows 10 Security Assessment</div>
+      <div class="proj-org">University of New Haven</div>
+      <div class="proj-desc">Designed and executed a full attack-to-response scenario: payload delivery, remote shell access, live session capture, and credential extraction, followed by structured incident response and malware analysis.</div>
+      <div class="proj-tools">
+        <span class="proj-tool">Metasploit</span>
+        <span class="proj-tool">Kali Linux</span>
+        <span class="proj-tool">Remote Access</span>
+        <span class="proj-tool">Incident Response</span>
+      </div>
+      <div class="proj-arrow">↗</div>
+    </div>
+
+    <div class="proj-card fx" data-tilt>
+      <div class="proj-num">03</div>
+      <span class="proj-cat cat-ai">AI &amp; Machine Learning</span>
+      <div class="proj-title">Autonomous Vacuum — Vision-Based Detection System</div>
+      <div class="proj-org">University of New Haven</div>
+      <div class="proj-desc">Built an AI-powered autonomous vacuum using deep learning models trained on 3,000+ images. Achieved sub-100ms edge inference latency with real-time adaptive motor control and obstacle navigation.</div>
+      <div class="proj-tools">
+        <span class="proj-tool">TensorFlow</span>
+        <span class="proj-tool">Computer Vision</span>
+        <span class="proj-tool">NVIDIA Jetson</span>
+        <span class="proj-tool">ROS2</span>
+      </div>
+      <div class="proj-arrow">↗</div>
+    </div>
+
+    <div class="proj-card fx" data-tilt>
+      <div class="proj-num">04</div>
+      <span class="proj-cat cat-net">Network Architecture</span>
+      <div class="proj-title">University Campus Area Network Design</div>
+      <div class="proj-org">University of New Haven</div>
+      <div class="proj-desc">Designed a four-building hierarchical campus network with end-to-end security — firewalls, intrusion detection, DMZ segmentation, and disaster recovery. Delivered full $1.16M budget analysis targeting 99.9% uptime.</div>
+      <div class="proj-tools">
+        <span class="proj-tool">Cisco</span>
+        <span class="proj-tool">Firewalls</span>
+        <span class="proj-tool">IDS / IPS</span>
+        <span class="proj-tool">Disaster Recovery</span>
+      </div>
+      <div class="proj-arrow">↗</div>
+    </div>
+
+    <div class="proj-card fx" data-tilt>
+      <div class="proj-num">05</div>
+      <span class="proj-cat cat-cry">Cryptography</span>
+      <div class="proj-title">Crypt-DAC — Cloud Cryptographic Access Control</div>
+      <div class="proj-org">Aurora's PG College · MCA Research Thesis</div>
+      <div class="proj-desc">Invented three novel encryption techniques for secure data storage on untrusted cloud servers. Achieved three orders of magnitude improvement in permission revocation efficiency over existing approaches.</div>
+      <div class="proj-tools">
+        <span class="proj-tool">Java / J2EE</span>
+        <span class="proj-tool">MySQL</span>
+        <span class="proj-tool">Symmetric Encryption</span>
+        <span class="proj-tool">Access Control</span>
+      </div>
+      <div class="proj-arrow">↗</div>
+    </div>
+
+    <div class="proj-card fx" data-tilt>
+      <div class="proj-num">06</div>
+      <span class="proj-cat cat-sys">Systems Programming</span>
+      <div class="proj-title">Multithreaded Robotic Assembly Line Simulation</div>
+      <div class="proj-org">University of New Haven</div>
+      <div class="proj-desc">Implemented a concurrent simulation with producer and consumer threads, mutex-based synchronisation, and realistic timing patterns — demonstrating advanced systems-level programming and thread safety design.</div>
+      <div class="proj-tools">
+        <span class="proj-tool">Python</span>
+        <span class="proj-tool">Multithreading</span>
+        <span class="proj-tool">Concurrency Design</span>
+        <span class="proj-tool">Synchronisation</span>
+      </div>
+      <div class="proj-arrow">↗</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ EDUCATION ══ -->
+<section class="sec sec-alt" id="education">
+  <div class="sec-over fx">Academic Background</div>
+  <h2 class="sec-title fx">Education &amp; <em>Credentials</em></h2>
+
+  <div class="edu-grid" style="margin-bottom:14px;">
+    <div class="edu-main fx">
+      <div class="edu-yr">2024 — 2026</div>
+      <div class="edu-deg">M.S. · Cybersecurity &amp; Networks</div>
+      <div class="edu-school">University of New Haven</div>
+      <div class="edu-loc">Tagliatela College of Engineering · West Haven, Connecticut</div>
+      <div class="edu-subjects">
+        <span class="edu-sub">Digital Forensics</span>
+        <span class="edu-sub">Ethical Hacking</span>
+        <span class="edu-sub">Enterprise Network Design</span>
+        <span class="edu-sub">Computer Security</span>
+        <span class="edu-sub">Artificial Intelligence</span>
+        <span class="edu-sub">Python Programming</span>
+        <span class="edu-sub">Wireless Networks</span>
+        <span class="edu-sub">Data Communication</span>
+      </div>
+    </div>
+
+    <div class="edu-stack fx">
+      <div class="edu-mini">
+        <div class="edu-mini-ico">💻</div>
+        <div>
+          <div class="edu-mini-deg">Master of Computer Applications</div>
+          <div class="edu-mini-school">Aurora's PG College</div>
+          <div class="edu-mini-meta">Hyderabad, India · May 2022</div>
+        </div>
+      </div>
+      <div class="edu-mini">
+        <div class="edu-mini-ico">📚</div>
+        <div>
+          <div class="edu-mini-deg">B.Sc. Computer Science</div>
+          <div class="edu-mini-school">Nalanda Degree College</div>
+          <div class="edu-mini-meta">India · 2020</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-over fx" style="margin-top:60px; margin-bottom:24px;">Certifications</div>
+  <div class="cert-grid">
+    <div class="cert-card fx">
+      <div class="cert-icon">🛡️</div>
+      <div>
+        <div class="cert-name">Certified Ethical Hacker</div>
+        <div class="cert-iss">uCertify · CEH v12</div>
+        <div class="cert-date">October – December 2025</div>
+        <div class="cert-tick">✓ Verified</div>
+      </div>
+    </div>
+    <div class="cert-card fx">
+      <div class="cert-icon">🌐</div>
+      <div>
+        <div class="cert-name">Introduction to Cybersecurity</div>
+        <div class="cert-iss">Cisco Networking Academy</div>
+        <div class="cert-date">April 2024</div>
+        <div class="cert-tick">✓ Verified</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section class="sec" id="contact">
+  <div class="contact-wrap">
+    <div class="fx">
+      <div class="sec-over" style="margin-bottom:16px;">Get In Touch</div>
+      <h2 class="contact-h">Let's build<br>something<br><em>secure.</em></h2>
+      <p class="contact-p">Open to internships, research collaborations, and full-time cybersecurity positions. Based in New Haven, CT — available for remote and on-site opportunities worldwide.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="mailto:srikanthguduri@outlook.com" class="btn-p">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="8" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M1 4l6 4 6-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          Send a Message
+        </a>
+        <a href="#" class="btn-s">View LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="c-links fx">
+      <a class="cl" href="tel:4753181597"><div class="cl-ico">📞</div><div><div class="cl-lbl">Phone</div><div class="cl-val">(475) 318-1597</div></div><div class="cl-arr">→</div></a>
+      <a class="cl" href="mailto:sgudu11@unh.newhaven.edu"><div class="cl-ico">📧</div><div><div class="cl-lbl">University Email</div><div class="cl-val">sgudu11@unh.newhaven.edu</div></div><div class="cl-arr">→</div></a>
+      <a class="cl" href="mailto:srikanthguduri@outlook.com"><div class="cl-ico">📬</div><div><div class="cl-lbl">Personal Email</div><div class="cl-val">srikanthguduri@outlook.com</div></div><div class="cl-arr">→</div></a>
+      <a class="cl" href="#"><div class="cl-ico">💼</div><div><div class="cl-lbl">LinkedIn</div><div class="cl-val">linkedin.com/in/srikanth-guduri</div></div><div class="cl-arr">→</div></a>
+      <a class="cl" href="#"><div class="cl-ico">🐙</div><div><div class="cl-lbl">GitHub</div><div class="cl-val">github.com/srikanth-guduri</div></div><div class="cl-arr">→</div></a>
+      <div class="cl" style="cursor:default;"><div class="cl-ico">📍</div><div><div class="cl-lbl">Location</div><div class="cl-val">New Haven, CT — United States</div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="ft">© 2026 Srikanth Guduri</span>
+  <span class="ft" style="color:var(--t3);">Cybersecurity &amp; Networks · University of New Haven</span>
+  <div class="ft-links">
+    <a href="#">LinkedIn</a>
+    <a href="#">GitHub</a>
+    <a href="mailto:srikanthguduri@outlook.com">Email</a>
+  </div>
+</footer>
+
+<script>
+/* CURSOR */
+const cur = document.getElementById('cur'), curO = document.getElementById('cur-o');
+let mx=-300,my=-300,ox=-300,oy=-300;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function loop(){ox+=(mx-ox)*.1;oy+=(my-oy)*.1;curO.style.left=ox+'px';curO.style.top=oy+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,[data-tilt]').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));});
+
+/* AURORA CANVAS */
+const cv=document.getElementById('bg'),cx=cv.getContext('2d');
+let W,H;
+const rs=()=>{W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;};
+window.addEventListener('resize',rs);rs();
+const orbs=[
+  {x:.1,y:.15,r:.6,h:218,s:.0003,p:0},{x:.82,y:.38,r:.5,h:230,s:.0005,p:2},
+  {x:.48,y:.82,r:.42,h:208,s:.0004,p:.9},{x:.28,y:.58,r:.35,h:245,s:.0006,p:2.4},
+];
+let t=0;
+(function draw(){
+  t++;cx.clearRect(0,0,W,H);
+  const bg=cx.createLinearGradient(0,0,0,H);
+  bg.addColorStop(0,'#03080f');bg.addColorStop(.6,'#050d1a');bg.addColorStop(1,'#03080f');
+  cx.fillStyle=bg;cx.fillRect(0,0,W,H);
+  orbs.forEach(o=>{
+    const bx=W*(o.x+Math.sin(t*o.s+o.p)*.07),by=H*(o.y+Math.cos(t*o.s*.8+o.p)*.05),br=Math.min(W,H)*o.r;
+    const al=.15+Math.sin(t*.0015+o.p)*.04;
+    const g=cx.createRadialGradient(bx,by,0,bx,by,br);
+    g.addColorStop(0,`hsla(${o.h},82%,52%,${al})`);g.addColorStop(.5,`hsla(${o.h+18},65%,42%,${al*.35})`);g.addColorStop(1,'transparent');
+    cx.fillStyle=g;cx.fillRect(0,0,W,H);
+  });
+  const mg=cx.createRadialGradient(mx,my,0,mx,my,260);
+  mg.addColorStop(0,'rgba(61,111,245,0.05)');mg.addColorStop(1,'transparent');
+  cx.fillStyle=mg;cx.fillRect(0,0,W,H);
+  requestAnimationFrame(draw);
+})();
+
+/* SCROLL */
+const pb=document.getElementById('pbar'),hdr=document.getElementById('hdr');
+window.addEventListener('scroll',()=>{
+  pb.style.transform=`scaleX(${scrollY/(document.body.scrollHeight-innerHeight)})`;
+  hdr.classList.toggle('on',scrollY>40);
+},{passive:true});
+
+/* NAV ACTIVE */
+const navAs=document.querySelectorAll('nav a'),sects=document.querySelectorAll('section[id]');
+window.addEventListener('scroll',()=>{
+  let cur='home';
+  sects.forEach(s=>{if(scrollY>=s.offsetTop-130)cur=s.id;});
+  navAs.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+cur));
+},{passive:true});
+
+/* REVEAL */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(!e.isIntersecting)return;
+    setTimeout(()=>e.target.classList.add('in'),0);
+    io.unobserve(e.target);
+  });
+},{threshold:.08});
+document.querySelectorAll('.fx').forEach((el,i)=>{el.style.transitionDelay=(i%6)*.1+'s';io.observe(el);});
+
+/* 3D TILT */
+document.querySelectorAll('[data-tilt]').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`perspective(1200px) rotateX(${-y*5}deg) rotateY(${x*5}deg) translateZ(8px) translateY(-7px)`;
+    card.style.transition='transform .06s linear,border-color .4s,box-shadow .4s';
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transition='transform .7s cubic-bezier(.22,1,.36,1),border-color .4s,box-shadow .4s';
+    card.style.transform='';
+  });
+});
+
+/* MAGNETIC BUTTONS */
+document.querySelectorAll('.btn-p,.btn-s').forEach(btn=>{
+  btn.addEventListener('mousemove',e=>{
+    const r=btn.getBoundingClientRect(),dx=e.clientX-r.left-r.width/2,dy=e.clientY-r.top-r.height/2;
+    btn.style.transform=`translate(${dx*.14}px,${dy*.14}px) translateY(-3px)`;
+    btn.style.transition='transform .08s linear,box-shadow .3s';
+  });
+  btn.addEventListener('mouseleave',()=>{btn.style.transform='';btn.style.transition='transform .55s cubic-bezier(.22,1,.36,1),box-shadow .3s';});
+});
+
+/* HERO PARALLAX */
+const hn=document.querySelector('.hero-name');
+document.querySelector('.hero')?.addEventListener('mousemove',e=>{
+  const {left,top,width,height}=document.querySelector('.hero').getBoundingClientRect();
+  if(hn){hn.style.transform=`translate(${((e.clientX-left)/width-.5)*8}px,${((e.clientY-top)/height-.5)*5}px)`;hn.style.transition='transform .08s linear';}
+});
+document.querySelector('.hero')?.addEventListener('mouseleave',()=>{if(hn){hn.style.transform='';hn.style.transition='transform .8s cubic-bezier(.22,1,.36,1)';}});
+</script>
+</body>
+</html>
